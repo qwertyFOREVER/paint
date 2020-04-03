@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColorPickerWPF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,9 @@ namespace paint
         WriteableBitmap Paint = BitmapFactory.New(652,334);
         WriteableBitmap Buf;
         Point point;
+        int tool = 1, thickness = 1;
+        Color color = Colors.Black;
+        Color ColorEnt = Colors.Black;
         bool isDrawable = false;
         public MainWindow()
         {
@@ -38,8 +42,21 @@ namespace paint
                 Point P = e.GetPosition(img);
                 Paint = Buf.Clone();
                 img.Source = Paint;
-                Paint.DrawLine((int)point.X, (int)point.Y, (int)P.X, (int)P.Y, Colors.Black);
-                
+                switch (tool)
+                {
+                    case 1:
+                        Paint.DrawLine((int)point.X, (int)point.Y, (int)P.X, (int)P.Y, color);
+                        point = e.GetPosition(img);
+                        Buf = Paint.Clone();
+                        break;
+                    case 2:
+                        Paint.DrawLineAa((int)point.X, (int)point.Y, (int)P.X, (int)P.Y, color, thickness);
+                        break;
+                    case 3:
+                        Paint.DrawEllipse((int)point.X, (int)point.Y, (int)P.X, (int)P.Y, color);
+                        break;
+
+                }
             }
         }
 
@@ -55,9 +72,46 @@ namespace paint
             isDrawable = false;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Clear_Click(object sender, RoutedEventArgs e)
         {
             Paint.Clear(Colors.White);
+        }
+
+        private void Pen_Click(object sender, RoutedEventArgs e)
+        {
+            tool = 1;
+            color = ColorEnt;
+        }
+
+        private void Straight_Click(object sender, RoutedEventArgs e)
+        {
+            tool = 2;
+            color = ColorEnt;
+        }
+
+        private void Palette_Click(object sender, RoutedEventArgs e)
+        {
+            if(ColorPickerWindow.ShowDialog (out ColorEnt))
+            {
+                color = ColorEnt;
+            }
+        }
+
+        private void Erwser_Click(object sender, RoutedEventArgs e)
+        {
+            tool = 1;
+            color = Colors.White;
+        }
+
+        private void Ellips_Click(object sender, RoutedEventArgs e)
+        {
+            tool = 3;
+            color = ColorEnt;
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            thickness = (int)(sender as Slider).Value;
         }
     }
 }

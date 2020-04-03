@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ColorPickerWPF" Version="1.0.9" />
     <PackageReference Include="WriteableBitmapEx" Version="1.6.5" />
   </ItemGroup>
 

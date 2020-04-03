@@ -8,7 +8,13 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid Background="#FFC7C1C1">
         <Image x:Name="img" HorizontalAlignment="Left" Height="334" Margin="122,30,0,0" VerticalAlignment="Top" Width="652" MouseMove="img_move" MouseDown="img_down" MouseUp="img_up"/>
-        <Button Content="Clear" HorizontalAlignment="Left" Margin="735,10,0,0" VerticalAlignment="Top" Width="40" Click="Button_Click"/>
+        <Button x:Name="Clear"  Content="Clear" HorizontalAlignment="Left" Margin="735,10,0,0" VerticalAlignment="Top" Width="40" Click="Clear_Click"/>
+        <Slider HorizontalAlignment="Left" Margin="516,10,0,0" VerticalAlignment="Top" Width="174" Height="18" ValueChanged="Slider_ValueChanged"  Minimum="1"/>
+        <Button x:Name="Pen" Content="Карандаш" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Height="60" Width="60" Click="Pen_Click"/>
+        <Button x:Name="Straight" Content="Прямая" HorizontalAlignment="Left" Margin="62,30,0,0" VerticalAlignment="Top" Height="60" Width="60" Click="Straight_Click"/>
+        <Button x:Name="Palette" Content="Палитра" Margin="122,365,557,10" Click="Palette_Click"/>
+        <Button x:Name="Erwser" Content="Ластик" HorizontalAlignment="Left" Margin="0,95,0,0" VerticalAlignment="Top" Height="60" Width="60" Click="Erwser_Click"/>
+        <Button x:Name="Ellips" Content="Эллипс" HorizontalAlignment="Left" Margin="62,95,0,0" VerticalAlignment="Top" Height="60" Width="60" Click="Ellips_Click"/>
 
     </Grid>
 </Window>
